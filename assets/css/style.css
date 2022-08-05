@@ -78,3 +78,14 @@ textarea{
 .container{
   text-align: left;
 }
+
+#reset {
+  font-size: 30px;
+  font-weight: 700;
+  width: fit-content;
+  padding: 10px 30px;
+  cursor: pointer;
+  background-color: aqua;
+  border: solid 3px black;
+  border-radius: 2.5em;
+}

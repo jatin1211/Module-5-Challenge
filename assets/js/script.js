@@ -10,16 +10,30 @@ var id15 = $("#15");
 var id16 = $("#16");
 var id17 = $("#17");
 
+
+
+var textAreaEl = $("textarea");
+
+var saveButtonEl = $(".saveBtn");
 // time_block array to store objects with properties value and id
-var time_block = [{value: 09, id : id09},
-    {value: 10, id : id10},
-    {value: 11, id : id11},
-    {value: 12, id : id12},
-    {value: 13, id : id13},
-    {value: 14, id : id14},
-    {value: 15, id : id15},
-    {value: 16, id : id16},
-    {value: 17, id : id17}];
+var time_block = [{value: 09, id : id09, idstr:"09"},
+    {value: 10, id : id10, idstr:"10"},
+    {value: 11, id : id11, idstr:"11"},
+    {value: 12, id : id12, idstr:"12"},
+    {value: 13, id : id13, idstr:"13"},
+    {value: 14, id : id14, idstr:"14"},
+    {value: 15, id : id15, idstr:"15"},
+    {value: 16, id : id16, idstr:"16"},
+    {value: 17, id : id17, idstr:"17"}];
+
+
+    for(var i=0; i < time_block.length; i++){
+        var storedData = localStorage.getItem(time_block[i].idstr);
+        $("#" + time_block[i].idstr).val(storedData);
+    
+    }
+    
+    
 
 //Executed when window loads
 $(document).ready(function(){
@@ -27,7 +41,7 @@ $(document).ready(function(){
     $("#date").text(moment().format("dddd, MMM Do, h:mm a"));
     var hour = moment().format("HH");
     console.log(hour);
-    let timeNow = moment();
+    //let timeNow = moment();
          
     for(var i = 0; i < time_block.length; i++){
         if(hour > time_block[i].value){
@@ -47,8 +61,26 @@ $(document).ready(function(){
 
 
 });
-function storeData(){
-    localStorage.setItem('textarea',)
-}
 
+saveButtonEl.on('click',function(){
+
+    var currentId = $(this).prev().attr("id");
+    
+    var data = $("#" + currentId).val();
+    console.log(data);
+    localStorage.setItem(currentId,data);
+    //console.log(textAreaEl);
+     
+    console.log("click");
+});
+
+$("#reset").on("click",function(){
+    localStorage.clear();
+    for(var i=0; i < time_block.length; i++){
+        $("#" + time_block[i].idstr).val("");
+    
+    }
+    
+
+})
 
